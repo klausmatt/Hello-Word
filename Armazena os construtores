@@ -1,0 +1,22 @@
+package Job;
+
+import javax.swing.JOptionPane;
+
+public class Storage {
+
+	private String storage = "";
+
+	public String Storage(String stor) {
+		Main main = new Main();
+		if (storage.equals("")) {
+			storage = storage.concat(storage + main.Storage);
+			JOptionPane.showMessageDialog(null, storage);
+		} else {
+			storage = storage.concat(storage + "\n\n" + main.Storage);
+			JOptionPane.showMessageDialog(null, storage);
+		}
+		return storage;
+
+	}
+
+}
