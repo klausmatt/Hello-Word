@@ -1,0 +1,71 @@
+package Job;
+
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
+
+import WorkTD.Product;
+
+public class Main {
+
+	public static String Storage = "";
+
+	private static double value, finalValue;
+
+	private static int port;
+
+	private static String produc, name;
+
+	public static void main(String[] args) {
+		Product product = new Product();
+		Storage storag = new Storage();
+		while (true) {
+			boolean juriOrFisi = product.testingCompany();
+			if (juriOrFisi == true) {
+				name = JOptionPane.showInputDialog("Enter the name of your company");
+			} else {
+				name = JOptionPane.showInputDialog("Enter your full name");
+			}
+			produc = JOptionPane.showInputDialog("Enter product name");
+			value = Double.parseDouble(JOptionPane.showInputDialog("Enter the value of the prodcut"));
+			product.setvalue(value);
+			boolean porOrDis = product.testingPortionOrDiscount();
+			if (porOrDis == true && juriOrFisi == true) {
+				port = Integer.parseInt(JOptionPane.showInputDialog("Do you want to pay in installments?"));
+				product.setPort(port);
+				finalValue = product.getValuePortionJuri();
+
+				Storage = "The company " + name + " is buying" + produc + " in the amount of §" + value + " in" + port
+						+ "x. The final value of the produc" + product + " in the long term:§" + finalValue;
+
+			} else if (porOrDis == true && juriOrFisi == false) {
+				port = Integer.parseInt(JOptionPane.showInputDialog("How many installments?"));
+				product.setPort(port);
+				finalValue = product.getValuePortionFisi();
+
+				Storage = "" + name + " is buying a " + product + " in the amount of: §" + value + " in" + port
+						+ "x. The final value of the" + product + "In teh long term; §" + finalValue;
+
+			} else if (porOrDis == false && juriOrFisi == true) {
+				finalValue = product.getValueDiscountJuri();
+				Storage = "The Company " + name + " Is buying a " + product + " in the amount of: §" + value
+						+ " the final value of the" + product + " in will be:§" + finalValue;
+
+			} else {
+				finalValue = product.getValueDiscountFisi();
+				Storage = "" + name + " Is buying a" + product + " in teh amount of:§" + value
+						+ " the final value of the" + product + " it will be:§" + finalValue;
+			}
+
+			int stay = JOptionPane.showConfirmDialog(null, "Do you wish to continue?");
+			if (stay == 0) {
+				storag.Storage(Storage);
+			} else {
+				Storage = storag.Storage(Storage);
+				break;
+		
+			}
+		}
+	}
+
+}
