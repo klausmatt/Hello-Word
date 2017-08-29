@@ -1,0 +1,26 @@
+package WorkTD;
+
+import javax.swing.JOptionPane;
+
+import Job.Payments;
+
+public class Product extends Payments {
+
+	private boolean Company;
+	private String CompanyOrPerson, Product;
+
+	public boolean testingCompany() {
+		String[] options = { "Legal", "Physical" };
+
+		Object request = JOptionPane.showInputDialog(null, "Legal Person or Physical?", "Job",
+				JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+		if (request.equals(options[0])) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+}
